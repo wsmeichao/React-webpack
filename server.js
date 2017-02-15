@@ -61,7 +61,7 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 /*------------------连接数据库配置数据库------------------*/
 app.listen(8181, function() {
-    console.log('成功启动');
+    console.log('成功启动了');
 });
 
 app.post('/api/Page', function(req, res) {
