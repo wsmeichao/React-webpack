@@ -1,0 +1,115 @@
+
+/*
+*   common
+*/
+.nextPage{
+  animation: nextPage 2s infinite linear;
+}
+@keyframes nextPage {
+  0%{
+    bottom: 80px;
+  }
+  50%{
+    bottom: 65px;
+  }
+  100%{
+    bottom: 80px;
+  }
+}
+
+.page-active{
+  .first-content{
+    animation: firstAnimate 1.5s;
+    animation-fill-mode:forwards;
+  }
+  .second-cell:first-of-type{
+    animation: secondAnimate 2s;
+    animation-fill-mode:forwards;
+    animation-duration:1s;
+  }
+  .second-cell:last-of-type{
+    animation: secondAnimate 2s;
+    animation-fill-mode:forwards;
+    animation-duration:1.5s;
+  }
+}
+
+@keyframes firstAnimate{
+  0%{
+    opacity: 0;
+    left: -100%;
+    transform: translateY(-50%) scale(0.1);
+  }
+  50%{
+    opacity: 0.4;
+    left: -49%;
+    transform: translateY(-50%) scale(0.6);
+  }
+  100%{
+    opacity: 1;
+    left: 2%;
+    transform: translateY(-50%) scale(1);
+  }
+}
+@keyframes secondAnimate{
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+.rainbow div{
+	.red{
+		animation:rainbows 1.15s infinite linear;
+    	animation-delay:0.15s;
+	}
+	.orange{
+		animation:rainbows 1.45s infinite linear;
+    	animation-delay:0.35s;
+	}
+	.yellow{
+		animation: rainbows 1200ms infinite linear;
+    	animation-delay:0.55s;
+	}
+	.green{
+		animation: rainbows 1.5s infinite linear;
+    	animation-delay:0.75s;
+	}
+	.cyan{
+		animation: rainbows 1.25s infinite linear;
+    	animation-delay:0.95s;
+	}
+	.blue{
+		animation: rainbows 0.75s infinite linear;
+    	animation-delay:1.15s;
+	}
+	.purple{
+		animation: rainbows 1.5s infinite linear;
+    	animation-delay:1.85s;
+	}
+	.pink{
+		animation: rainbows 1.25s infinite linear;
+    	animation-delay:0.95s;
+	}
+	.MediumVioletRed{
+		animation: rainbows 1.75s infinite linear;
+    	animation-delay:1.15s;
+	}
+	.Thistle{
+		animation: rainbows 2s infinite linear;
+    	animation-delay:1.75s;
+	}
+	.Violet{
+		animation: rainbows 1.5s infinite linear;
+    	animation-delay:1.15s;
+	}
+}
+@keyframes rainbows{
+0%{opacity: 0;transform:scale(0) translate(0,0);}
+50%{opacity:1;transform:scale(1)  translate(-300px,300px);}
+100%{opacity:0;transform:scale(1) translate(-700px,700px);}
+}
