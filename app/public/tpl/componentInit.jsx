@@ -12,7 +12,9 @@ class ComponentInit extends React.Component{
 			  title: 'Name',
 			  dataIndex: 'name',
 			  key: 'name',
-			  render: text => <a href="#">{text}{console.log('textasdsad',text)}</a>,
+			  render: text => <a href="#">{text}{
+			  	// console.log('textasdsad',text)
+			  }</a>,
 			}, {
 			  title: 'Age',
 			  dataIndex: 'age',
@@ -27,7 +29,7 @@ class ComponentInit extends React.Component{
 			  render: (text, record,index) => (
 			    <span>
 			    {
-			    	console.log('record',record)
+			    	// console.log('record',record)
 				}
 			      <a href="#">Action 一 {record.name}</a>
 			      <span className="ant-divider" />
@@ -62,6 +64,10 @@ class ComponentInit extends React.Component{
 	    ].forEach(func=>{
 	        this[func] = this[func].bind(this);
 	    });
+	    this.pagination = {
+	    	// current:2,
+	    	pageSize:10
+	    }
 	};
 	_onShowSizeChange(current,pageSize){
 		console.log("current",current);
@@ -72,6 +78,15 @@ class ComponentInit extends React.Component{
 		console.log("pageSize",pageSize);
 	}
 	render(){
+		const data = [];
+		for (let i = 0; i < 46; i++) {
+		  data.push({
+		    key: i,
+		    name: `Edward King ${i}`,
+		    age: 32,
+		    address: `London, Park Lane no. ${i}`,
+		  });
+		}
 		return (
 			<article className={'McomponentInit'} style={{minHeight:900}}>
 				<h1>React Component</h1>
@@ -80,7 +95,7 @@ class ComponentInit extends React.Component{
 					<MInput type='text' size='lg' />
 				</section>
 				<MPagination total="91" showSizeChanger showQuickJumper onShowSizeChange={this._onShowSizeChange} onChange={this._changePage}/>
-				<MTable rowKey={record => record.registered} data={this.state.data} columns={this.state.columns}/>
+				<MTable rowKey={record => record.registered} dataSource={data} columns={this.state.columns} pagination={this.pagination}/>
 			</article>
 		)
 	}
