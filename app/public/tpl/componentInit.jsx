@@ -41,22 +41,13 @@ class ComponentInit extends React.Component{
 			    </span>
 			  ),
 			}],
-			data : [{
-			  key: '1',
-			  name: 'John Brown',
-			  age: 32,
-			  address: 'New York No. 1 Lake Park',
-			}, {
-			  key: '2',
-			  name: 'Jim Green',
-			  age: 42,
-			  address: 'London No. 1 Lake Park',
-			}, {
-			  key: '3',
-			  name: 'Joe Black',
-			  age: 32,
-			  address: 'Sidney No. 1 Lake Park',
-			}]
+			pagination : {
+		    	current:1,
+		    	pageSize:10,
+		    	onChange: (current) => {
+				    console.log('Current: ', current);
+				}
+	    	}
 		};
 		[
 	      '_onShowSizeChange',
@@ -64,18 +55,14 @@ class ComponentInit extends React.Component{
 	    ].forEach(func=>{
 	        this[func] = this[func].bind(this);
 	    });
-	    this.pagination = {
-	    	// current:2,
-	    	pageSize:10
-	    }
 	};
 	_onShowSizeChange(current,pageSize){
-		console.log("current",current);
-		console.log("pageSize",pageSize);
+		// console.log("current",current);
+		// console.log("pageSize",pageSize);
 	}
 	_changePage(current,pageSize){
-		console.log("current",current);
-		console.log("pageSize",pageSize);
+		// console.log("current",current);
+		// console.log("pageSize",pageSize);
 	}
 	render(){
 		const data = [];
@@ -95,7 +82,7 @@ class ComponentInit extends React.Component{
 					<MInput type='text' size='lg' />
 				</section>
 				<MPagination total="91" showSizeChanger showQuickJumper onShowSizeChange={this._onShowSizeChange} onChange={this._changePage}/>
-				<MTable rowKey={record => record.registered} dataSource={data} columns={this.state.columns} pagination={this.pagination}/>
+				<MTable onChange={this._changePage} rowKey={record => record.registered} dataSource={data} columns={this.state.columns} pagination={this.state.pagination}/>
 			</article>
 		)
 	}

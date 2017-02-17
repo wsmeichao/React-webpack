@@ -78,8 +78,25 @@ class MTable extends React.Component {
 	    return current;
 	}
 	// 页码改变
-	_handlePageChange(){
-		console.log("haha");
+	_handlePageChange(current){
+		console.log("asdasdsad current",current);
+		const props = this.props;
+		let pagination = assign({},this.state.pagination);
+		if(current){
+			pagination.current = current;
+		}else{
+			pagination.current = pagination.current || 1;
+		}
+		pagination.onChange(pagination.current);
+		const newState = {
+	      pagination,
+	    };
+		// if(typeof props.pagination === 'object'){
+		// 	newState.pagination = assign({}, pagination, {
+		//         current: this.state.pagination.current,
+		//     });
+		// }
+		this.setState(newState);
 	}
 	// 分页的显示条数改变
 	_handleShowSizeChange(){
