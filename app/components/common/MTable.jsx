@@ -79,7 +79,6 @@ class MTable extends React.Component {
 	}
 	// 页码改变
 	_handlePageChange(current){
-		console.log("asdasdsad current",current);
 		const props = this.props;
 		let pagination = assign({},this.state.pagination);
 		if(current){

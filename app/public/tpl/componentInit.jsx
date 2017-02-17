@@ -44,6 +44,7 @@ class ComponentInit extends React.Component{
 			pagination : {
 		    	current:1,
 		    	pageSize:10,
+		    	showSizeChanger:true,
 		    	onChange: (current) => {
 				    console.log('Current: ', current);
 				}
