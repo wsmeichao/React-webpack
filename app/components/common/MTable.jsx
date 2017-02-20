@@ -58,8 +58,8 @@ class MTable extends React.Component {
 		*	否则就进行分页处理
 		*/
 		if(data.length > pageSize || pageSize === Number.MAX_VALUE){
+			//数据过滤,把满足条件的数据拎出来
 			data = data.filter((_, i) => {
-				console.log("i",i >= (current - 1) * pageSize && i < current * pageSize,i);
 		        return i >= (current - 1) * pageSize && i < current * pageSize;
 		    });
 		}

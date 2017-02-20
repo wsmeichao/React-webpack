@@ -49,21 +49,21 @@ var compiler = webpack(webpackDevConfig);
 
 // attach to the compiler & the server
 app.use(webpackDevMiddleware(compiler, {
-    // public path should be the same with webpack config
-    publicPath: webpackDevConfig.output.publicPath,
-    noInfo: true,
-    hot:true,
-    stats: {
-        colors: true
-    }
+  // public path should be the same with webpack config
+  publicPath: webpackDevConfig.output.publicPath,
+  noInfo: true,
+  hot:true,
+  stats: {
+      colors: true
+  }
 }));
 app.use(webpackHotMiddleware(compiler));
 /*------------------连接数据库配置数据库------------------*/
 app.listen(8181, function() {
-    console.log('成功启动了');
+  console.log('成功启动了');
 });
 
 app.post('/api/Page', function(req, res) {
-    console.log(req.body);
-    res.send({ message: 'done', newCard: 'newCard' });
+  console.log(req.body);
+  res.send({ message: 'done', newCard: 'newCard' });
 });

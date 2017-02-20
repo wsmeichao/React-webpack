@@ -23,31 +23,59 @@ class MBackTop extends React.Component{
 			TimeClearn:[]
 		};
 		[
+			'_reqAnimFrame',
+			'_setScrollTop',
+			'_easeInOutCubic',
 	    	'_handleScroll',
 	        '_backTop',
+	        '_currentScrollTop',
 	        '_toTop',
 	    ].forEach(func=>{
 	        this[func] = this[func].bind(this);
 	    });
 	}
-	_backTop(){
+	_reqAnimFrame(callback){
+		let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+		requestAnimationFrame(callback);
+	}
+	_setScrollTop(value){
+		document.body.scrollTop = value;
+    	document.documentElement.scrollTop = value;
+
+	}
+	_easeInOutCubic(t, b, c, d){
+		const cc = c - b;
+		t /= d / 2;
+		if (t < 1) {
+			return cc / 2 * t * t * t + b;
+		} else {
+			return cc / 2 * ((t -= 2) * t * t + 2) + b;
+		}
+	}
+	_backTop(e){
 		this.props.onClick?this.props.onClick():"";
-		this._toTop();
+		this._toTop(e);
+	}
+	_currentScrollTop(){
+		return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 	}
 	_toTop(){
 		let self = this;
-		let everyScroll = -self.state.scrollTop/10;
-		window.scrollBy(0,everyScroll);
-		if(document.body.scrollTop>0) { 
-			let timeout = setTimeout(function() {
-				self._toTop();
-			}, 10);
-			self.state.TimeClearn.push(timeout);
-		}
+		const scrollTop = self._currentScrollTop();
+		const startTime = Date.now();
+		const frameFunc = () => {
+	    	const timestamp = Date.now();
+	    	const time = timestamp - startTime;
+	    	self._setScrollTop(self._easeInOutCubic(time, scrollTop, 0, 250));
+	    	if (time < 250) {
+	        	self._reqAnimFrame(frameFunc);
+	    	}
+	    };
+	    self._reqAnimFrame(frameFunc);
 	}
 	_handleScroll(e){
 		let self = this;
-	    let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+	    let scrollTop = self._currentScrollTop();
 		let InTop = self.state.InTop;
 	    if(scrollTop > 0){
 	    	if(InTop == ''){
@@ -65,9 +93,6 @@ class MBackTop extends React.Component{
 		ComponentTool.bind(window,'scroll',this._handleScroll);
 	}
 	componentWillUnmount() {
-		this.state.TimeClearn.map(function(elem,index) {
-			clearTimeout(elem);
-		})
 		ComponentTool.unbind(window,'scroll',this._handleScroll);
 	}
 	render(){
