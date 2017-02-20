@@ -43,6 +43,12 @@ class MBackTop extends React.Component{
     	document.documentElement.scrollTop = value;
 
 	}
+	/*
+	*	这公式有毒,暂时没明白如何计算出来的(仿照ant-design的源码的算法公式)
+	*	@ t   时间差
+	*	@ b   当前scrollTop
+	*	@ c   
+	*/
 	_easeInOutCubic(t, b, c, d){
 		const cc = c - b;
 		t /= d / 2;
