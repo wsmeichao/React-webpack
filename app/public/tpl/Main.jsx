@@ -87,17 +87,18 @@ class Main extends React.Component{
         // Tool.on(document, 'DOMMouseScroll', this._EventMouseWheel);
 	}
 	render(){
+		const self = this;
 		let mainPageOffset = {
 			height:window.innerHeight,
 			transform:'translateY(-'+this.state.offset*window.innerHeight+'px)'
 		}
+		let listPoint = [0,1,2,3].map(function(elem, index) {
+			return <div className={classNames('list-point',{'active':self.state.offset==elem})} onClick={self._offset.bind(self,elem)}></div>
+		})
 		return (
 			<main className="main-wrapper">
 				<section id="list">
-					<div className={classNames('list-point',{'active':this.state.offset==0})} onClick={this._offset.bind(this,0)}></div>
-					<div className={classNames('list-point',{'active':this.state.offset==1})} onClick={this._offset.bind(this,1)}></div>
-					<div className={classNames('list-point',{'active':this.state.offset==2})} onClick={this._offset.bind(this,2)}></div>
-					<div className={classNames('list-point',{'active':this.state.offset==3})} onClick={this._offset.bind(this,3)}></div>
+					{listPoint}
 				</section>
 				<section className="page-container">
 					<div style={mainPageOffset} className="page-full">

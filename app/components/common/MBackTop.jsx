@@ -18,9 +18,7 @@ class MBackTop extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			InTop: '',
-			scrollTop:0,
-			TimeClearn:[]
+			InTop: ''
 		};
 		[
 			'_reqAnimFrame',
@@ -80,9 +78,8 @@ class MBackTop extends React.Component{
 	    self._reqAnimFrame(frameFunc);
 	}
 	_handleScroll(e){
-		let self = this;
-	    let scrollTop = self._currentScrollTop();
-		let InTop = self.state.InTop;
+	    let scrollTop = this._currentScrollTop();
+		let InTop = this.state.InTop;
 	    if(scrollTop > 0){
 	    	if(InTop == ''){
 	    		InTop = 'M-in-top';
@@ -90,9 +87,8 @@ class MBackTop extends React.Component{
 	    }else{
 	    	InTop = '';
 	    }
-	    self.setState({
-			InTop: InTop,
-			scrollTop: scrollTop
+	    this.setState({
+			InTop: InTop
 		});
 	}
 	componentDidMount() {
