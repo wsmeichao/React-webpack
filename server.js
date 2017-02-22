@@ -64,6 +64,8 @@ app.listen(8181, function() {
 });
 
 app.post('/api/Page', function(req, res) {
-  console.log(req.body);
+  console.log("query",req.query.init);
+  console.log("body",req.body);
+  console.log("params",req.params);
   res.send({ message: 'done', newCard: 'newCard' });
 });

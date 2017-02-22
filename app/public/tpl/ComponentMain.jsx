@@ -2,7 +2,8 @@ import React from 'react';
 import {IndexLink,Link} from 'react-router';
 import { MBackTop } from '../../components/MComponent';
 import Footer from './footer';
-import $ from 'jquery';
+import fetch from 'isomorphic-fetch';
+require('es6-promise').polyfill();
 
 class ComponentMain extends React.Component{
 	constructor(props){
@@ -10,11 +11,17 @@ class ComponentMain extends React.Component{
 	}
 	componentDidMount(){
 		document.title="组件API文档";
-		let detail = 'http://localhost:8181/api/Page';
-		$.post(detail,{"init":'init'}, function(data) {
+		let detail = 'http://localhost:8181/api/Page?init=init';
+		fetch(detail,{
+			method: 'POST',
+			body:'init=init'
+		})
+		.then(function(response) {
+			console.log("response",response);
+			return response.json();
+		}).then(function(data){
 			console.log('data',data);
-		});
-		// console.log('$',$);
+		})
 	}
 	render(){
 		return (
