@@ -56,7 +56,6 @@ class MInput extends React.Component {
       this.props.onChange?this.props.onChange(e):"";
     }
     render() {
-      console.log("render");
       let inputsize = this.props.size?`M-input-${this.props.size}`:"";
       return (
       	<span className="M-input-wrapper">
