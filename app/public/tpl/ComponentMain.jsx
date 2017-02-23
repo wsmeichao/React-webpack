@@ -11,17 +11,17 @@ class ComponentMain extends React.Component{
 	}
 	componentDidMount(){
 		document.title="组件API文档";
-		let detail = '/api/Page?init=init';
-		fetch(detail,{
-			method: 'POST',
-			body:'init=init'
-		})
-		.then(function(response) {
-			console.log("response",response);
-			return response.json();
-		}).then(function(data){
-			console.log('data',data);
-		})
+		// let detail = '/api/Page?init=init';
+		// fetch(detail,{
+		// 	method: 'POST',
+		// 	body:'init=init'
+		// })
+		// .then(function(response) {
+		// 	console.log("response",response);
+		// 	return response.json();
+		// }).then(function(data){
+		// 	console.log('data',data);
+		// })
 	}
 	render(){
 		return (

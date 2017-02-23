@@ -46,7 +46,6 @@ class MInput extends React.Component {
     };
     _Focus(e){
       this.props.onFocus?this.props.onFocus():'';
-      // 对外提供了聚焦的方法,但是focus()的之后,会再次调用onFocus,但是不会重新render
       this.InputFocus.focus();
     }
     _Blur(){
