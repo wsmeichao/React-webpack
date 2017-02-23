@@ -79,10 +79,9 @@ class Main extends React.Component{
     }
 	componentDidMount(){
 		document.title="React-Component";
-		let allPage = document.querySelectorAll(".page");
-		for(let index = 0;index< allPage.length;index++){
-			allPage[index].style.height = window.innerHeight + "px";
-		}
+		document.querySelectorAll(".page").forEach((item,index)=>{
+			item.style.height = window.innerHeight + "px";
+		})
 		// Tool.on(document, 'mousewheel', this._EventMouseWheel);
         // Tool.on(document, 'DOMMouseScroll', this._EventMouseWheel);
 	}
@@ -93,7 +92,7 @@ class Main extends React.Component{
 			transform:'translateY(-'+this.state.offset*window.innerHeight+'px)'
 		}
 		let listPoint = [0,1,2,3].map(function(elem, index) {
-			return <div className={classNames('list-point',{'active':self.state.offset==elem})} onClick={self._offset.bind(self,elem)}></div>
+			return <div key={`list-point-${index}`} className={classNames('list-point',{'active':self.state.offset==elem})} onClick={self._offset.bind(self,elem)}></div>
 		})
 		return (
 			<main className="main-wrapper">

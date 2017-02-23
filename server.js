@@ -44,7 +44,7 @@ app.all('*', function(req, res, next) {
 var webpack = require('webpack'),
 webpackDevMiddleware = require('webpack-dev-middleware'),
 webpackHotMiddleware = require('webpack-hot-middleware'),
-webpackDevConfig = require('./webpack.config.js');
+webpackDevConfig = require('./webpack.config.production.js');
 var compiler = webpack(webpackDevConfig);
 
 // attach to the compiler & the server

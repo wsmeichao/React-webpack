@@ -8,6 +8,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: [
         'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
         path.resolve(__dirname, './app/routes')
     ],
     output: {
@@ -56,6 +57,11 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(),                //按引用频度来排序 ID，以便达到减少文件大小的效果
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin('common.js'),
+        new webpack.DefinePlugin({
+              "process.env": { 
+                 NODE_ENV: JSON.stringify("production") 
+               }
+            }),
         // new ExtractTextPlugin("style.css",{allChunks: true}),
         new ExtractTextPlugin("[name].css"),
         new HtmlWebpackPlugin({
