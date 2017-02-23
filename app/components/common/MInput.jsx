@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 import classNames from 'classnames';
 
 /*
@@ -35,9 +36,6 @@ import classNames from 'classnames';
 class MInput extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {
-				focus: '',
-			};
       [
         '_Focus',
         '_Blur',
@@ -46,22 +44,19 @@ class MInput extends React.Component {
           this[func] = this[func].bind(this);
       });
     };
-    _Focus(){
+    _Focus(e){
       this.props.onFocus?this.props.onFocus():'';
-      this.setState({
-        focus:"M-input-focus"
-      })
-    };
+      // 对外提供了聚焦的方法,但是focus()的之后,会再次调用onFocus,但是不会重新render
+      this.InputFocus.focus();
+    }
     _Blur(){
       this.props.onBlur?this.props.onBlur():'';
-      this.setState({
-        focus:""
-      })
-    };
+    }
     _Change(e){
       this.props.onChange?this.props.onChange(e):"";
-    };
+    }
     render() {
+      console.log("render");
       let inputsize = this.props.size?`M-input-${this.props.size}`:"";
       return (
       	<span className="M-input-wrapper">
@@ -71,11 +66,12 @@ class MInput extends React.Component {
       			value={this.props.value}
       			defaultValue={this.props.defaultValue}
       			disabled={this.props.disabled}
-      			className={classNames('M-input',inputsize,this.state.focus,this.props.className)} 
+      			className={classNames('M-input',inputsize,this.props.className)} 
       			onFocus={this._Focus} 
       			onBlur={this._Blur}
       			onChange={this._Change}
             onKeyPress={this.props.onKeyPress}
+            ref={event=>this.InputFocus=event}
       		/>
       	</span>
       )

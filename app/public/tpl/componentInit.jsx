@@ -52,7 +52,8 @@ class ComponentInit extends React.Component{
 		};
 		[
 	      '_onShowSizeChange',
-	      '_changePage',   
+	      '_changePage',
+	      '_callback',   
 	    ].forEach(func=>{
 	        this[func] = this[func].bind(this);
 	    });
@@ -64,6 +65,9 @@ class ComponentInit extends React.Component{
 	_changePage(current,pageSize){
 		// console.log("current",current);
 		// console.log("pageSize",pageSize);
+	}
+	_callback(){
+		this.refInput._Focus();
 	}
 	render(){
 		const data = [];
@@ -80,7 +84,7 @@ class ComponentInit extends React.Component{
 				<h1>React Component</h1>
 				<section>
 					<MButton onClick={this._callback} className={'demoClass'} type='primary' size='lg'>testword</MButton>
-					<MInput type='text' size='lg' />
+					<MInput type='text' size='lg' ref={event=>this.refInput=event}/>
 				</section>
 				<MPagination total="91" showSizeChanger showQuickJumper onShowSizeChange={this._onShowSizeChange} onChange={this._changePage}/>
 				<MTable onChange={this._changePage} rowKey={record => record.registered} dataSource={data} columns={this.state.columns} pagination={this.state.pagination}/>

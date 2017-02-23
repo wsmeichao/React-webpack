@@ -325,11 +325,6 @@ $baseSize:16px;
     height: 22px;
     border-radius: 4px;
   }
-  .M-input-focus{
-    @include showbackgroundColor(#fff);
-    @include showborderColor(#57c5f7);
-    box-shadow:0 0 $baseSize*0.5 #57c5f7;
-  }
 }
 .M-input {
   position: relative;
@@ -349,6 +344,11 @@ $baseSize:16px;
   &:focus,&:hover {
     outline: none;
     border-color: #57c5f7;
+  }
+  &:focus{
+    @include showbackgroundColor(#fff);
+    @include showborderColor(#57c5f7);
+    box-shadow:0 0 $baseSize*0.5 #57c5f7;
   }
 }
 

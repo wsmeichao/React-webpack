@@ -11,7 +11,7 @@ class ComponentMain extends React.Component{
 	}
 	componentDidMount(){
 		document.title="组件API文档";
-		let detail = 'http://localhost:8181/api/Page?init=init';
+		let detail = '/api/Page?init=init';
 		fetch(detail,{
 			method: 'POST',
 			body:'init=init'
