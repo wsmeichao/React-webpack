@@ -1,35 +1,20 @@
-/*
-*	created by MC on 2017/2/6
-*	待定，需要加上代理，然后前后端互通起来
-*/
 
-/*
-*	webpack代理
-
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
-
-//启动服务
-new WebpackDevServer(webpack(config), {
-  	publicPath: config.output.publicPath,
-  	hot: true,
-  	proxy: [{
-  		path:'/api/*',
-  		target: 'http://bigmeichao.com',
-        host: 'bigmeichao.com'
-	}],
-	stats: {
-        colors: require('supports-color')
-    },
-}).listen(8181);
-
-*/
-
+// var proxy = require('http-proxy-middleware');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = new express();
 app.use(bodyParser.urlencoded({ extended: false }))
+
+/*
+* 代理跑通,并且能拿到数据
+*/
+// var context = '/api';
+// var options = {
+//     target: 'http://bigmeichao.com/',//目标服务器地址
+//     changeOrigin: true,             //虚拟主机网站需要
+// }
+// var apiProxy =  proxy(context, options);
+// app.use(apiProxy);
 
 // parse application/json
 app.use(bodyParser.json())
@@ -58,6 +43,7 @@ app.use(webpackDevMiddleware(compiler, {
   }
 }));
 app.use(webpackHotMiddleware(compiler));
+
 /*------------------连接数据库配置数据库------------------*/
 app.listen(8181, function() {
   console.log('成功启动了');

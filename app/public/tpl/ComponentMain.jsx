@@ -11,17 +11,36 @@ class ComponentMain extends React.Component{
 	}
 	componentDidMount(){
 		document.title="组件API文档";
-		// let detail = '/api/Page?init=init';
-		// fetch(detail,{
-		// 	method: 'POST',
-		// 	body:'init=init'
-		// })
-		// .then(function(response) {
-		// 	console.log("response",response);
-		// 	return response.json();
-		// }).then(function(data){
-		// 	console.log('data',data);
-		// })
+		/*
+		*	代理到	http://bigmeichao.com/api/Page.php
+		*
+		let detail = "/api/Page.php?init=has_init";
+		fetch(detail,{
+			method: 'GET'
+		})
+		.then(function(response) {
+			console.log("response",response);
+			return response.json();
+		}).then(function(data){
+			console.log('data',data);
+		})
+		*
+		*/
+
+		/*
+		*	这里不是代理，是直接连接server.js的express的接口
+		*/
+		let detail = '/api/Page?init=init';
+		fetch(detail,{
+			method: 'POST',
+			body:'init=init'
+		})
+		.then(function(response) {
+			console.log("response",response);
+			return response.json();
+		}).then(function(data){
+			console.log('data',data);
+		})
 	}
 	render(){
 		return (
