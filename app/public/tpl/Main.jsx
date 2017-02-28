@@ -1,13 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 import { MIcon } from '../../components/MComponent';
+import { Tool } from '../Tool/Tool';
 
 class Main extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			scrollTop:0,
-			finish:true,
+			listPoint:[0,1,2,3],
+			isComplate:true,
 			offset:0
 		};
 		[
@@ -23,8 +24,7 @@ class Main extends React.Component{
 	_offset(index){
 		this.setState({
         	offset:index
-      	})
-		
+      	})	
 	}
 	_nextPage(){
 		let nowPage = this.state.offset;
@@ -34,47 +34,30 @@ class Main extends React.Component{
         return event ? event : window.event;
     };
     _stopPropagation(event) {
-        event = event || window.event;
+        event = this._getEvent(event);
         if (event.stopPropagation) {
             event.stopPropagation();
-        } else {
+        }else{
             event.cancelBubble = true;
         }
     }
     _EventMouseWheel(event) {
-    	let self = this;
-    	self._stopPropagation(event);
-	    event = self._getEvent(event);
-    	if(self.state.finish){
-    		self.state.finish = false;
-	        let value = event.wheelDelta || -event.detail;
-	        let delta = Math.max(-1, Math.min(1, value));
-	        if(delta < 0){
-	        	// let nowTop = self.state.scrollTop+window.innerHeight;
-	        	// let offset = window.innerHeight/10;
-	        	// let timer = setInterval(function(){	     		
-	        	// 	window.scrollTo(0,self.state.scrollTop+offset);
-	        	// 	self.setState({scrollTop:self.state.scrollTop+offset});
-	        	// 	if(self.state.scrollTop >= nowTop){	
-		        // 		self.state.finish = true;
-		        // 		clearInterval(timer);
-		        // 	}
-	        	// },100);
-	        	
-	        }else{
-	      //   	if(self.state.scrollTop > 0){
-	      //   		let nowTop = self.state.scrollTop-window.innerHeight;
-		     //    	let offset = window.innerHeight/10;
-		     //    	let timer = setInterval(function(){	        		
-		     //    		window.scrollTo(0,self.state.scrollTop-offset);
-		     //    		self.setState({scrollTop:self.state.scrollTop-offset});
-		     //    		if(self.state.scrollTop <= nowTop){		        		
-			    //     		self.state.finish = true;
-			    //     		clearInterval(timer);
-			    //     	}
-		     //    	},100);
-		    	// }
+    	let state = this.state;
+    	this._stopPropagation(event);
+	    event = this._getEvent(event);
+	    if(state.isComplate){
+	    	state.isComplate = false;
+	    	let wheelDeltaValue = event.wheelDelta || event.detail;
+	    	let preOffset = state.offset;
+	    	if(wheelDeltaValue > 0 && preOffset > 0){
+	    		preOffset--
+	        }else if(wheelDeltaValue < 0 && preOffset < (state.listPoint.length-1)){
+	        	preOffset++;
 	        }
+	        this.setState({
+    			isComplate:true,
+    			offset:preOffset
+    		})
 	    }
     }
 	componentDidMount(){
@@ -82,8 +65,9 @@ class Main extends React.Component{
 		document.querySelectorAll(".page").forEach((item,index)=>{
 			item.style.height = window.innerHeight + "px";
 		})
-		// Tool.on(document, 'mousewheel', this._EventMouseWheel);
-        // Tool.on(document, 'DOMMouseScroll', this._EventMouseWheel);
+		Tool.bind(document, 'mousewheel', this._EventMouseWheel);
+        Tool.bind(document, 'DOMMouseScroll', this._EventMouseWheel);
+        // window.onmousewheel = document.onmousewheel = this._EventMouseWheel; 
 	}
 	render(){
 		const self = this;
@@ -91,7 +75,7 @@ class Main extends React.Component{
 			height:window.innerHeight,
 			transform:'translateY(-'+this.state.offset*window.innerHeight+'px)'
 		}
-		let listPoint = [0,1,2,3].map(function(elem, index) {
+		let listPoint = self.state.listPoint.map(function(elem, index) {
 			return <div key={`list-point-${index}`} className={classNames('list-point',{'active':self.state.offset==elem})} onClick={self._offset.bind(self,elem)}></div>
 		})
 		return (
