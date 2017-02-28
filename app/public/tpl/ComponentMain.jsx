@@ -30,17 +30,17 @@ class ComponentMain extends React.Component{
 		/*
 		*	这里不是代理，是直接连接server.js的express的接口
 		*/
-		let detail = '/api/Page?init=init';
-		fetch(detail,{
-			method: 'POST',
-			body:'init=init'
-		})
-		.then(function(response) {
-			console.log("response",response);
-			return response.json();
-		}).then(function(data){
-			console.log('data',data);
-		})
+		// let detail = '/api/Page?init=init';
+		// fetch(detail,{
+		// 	method: 'POST',
+		// 	body:'init=init'
+		// })
+		// .then(function(response) {
+		// 	console.log("response",response);
+		// 	return response.json();
+		// }).then(function(data){
+		// 	console.log('data',data);
+		// })
 	}
 	render(){
 		return (
