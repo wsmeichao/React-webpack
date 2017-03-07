@@ -61,6 +61,18 @@ Tool.removeLocalItem = function (key) {
     return localStorage.removeItem();
 }
 
-
+/**
+ * 数组合并
+ * 
+ * @param {arr} Array
+ * @list  可选参数,可多个(每个可以是数组,也可以是单个变量)
+ * @return arr 会改变arr的值
+ */
+Tool.ArrayConcat = function(arr,...list){
+    list.forEach((item)=>{
+        item instanceof Array?arr.push(...item):arr.push(item)
+    });
+    return arr;
+}
 
 export { Tool }

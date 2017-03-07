@@ -9,7 +9,8 @@ class Main extends React.Component{
 		this.state = {
 			listPoint:[0,1,2,3],
 			isComplate:true,
-			offset:0
+			offset:0,
+			test:true
 		};
 		[
 	        '_offset',
@@ -60,7 +61,37 @@ class Main extends React.Component{
     		})
 	    }
     }
-	componentDidMount(){
+    componentWillReceiveProps(nextProps){
+    	// 这个还没有刷新出来,因为props没有改变
+    	console.log("nextProps",nextProps);
+    }
+    // forceUpdate(){
+
+    // }
+    shouldComponentUpdate(nextProps,nextState){
+    	console.log(this.state);
+    	console.log("shouldComponentUpdate",nextProps,nextState);
+    	return true;
+    }
+    componentWillUpdate(nextProps,nextState){
+    	console.log("componentWillUpdate",nextProps,nextState);
+    }
+    componentDidUpdate(prevProps,prevState){
+    	console.log("componentDidUpdate",prevProps,prevState);
+    	console.log(this.state);
+    }
+
+    /*
+    *	componentDidMount 和 componentDidUpdate 常用来加载第三方的库（此时真实DOM存在，可加载各种图表库）。
+    */
+
+    componentWillMount(){
+    	this.setState({test:false});
+    	console.log("componentWillMount");
+    }
+	componentDidMount(prevProps,prevState){
+		console.log(this.props.children)
+		console.log("componentDidMount",prevProps,prevState,'this.state',this.state);
 		document.title="React-Component";
 		document.querySelectorAll(".page").forEach((item,index)=>{
 			item.style.height = window.innerHeight + "px";
@@ -70,6 +101,12 @@ class Main extends React.Component{
         // window.onmousewheel = document.onmousewheel = this._EventMouseWheel; 
 	}
 	render(){
+		let arr = [1,1,'2','2',3,4,5,'meichao','meichao'];
+		// console.log("数组去重",[...new Set(arr)]);
+		// for(let item of ['a','b']){console.log(item )}
+		let arrs = [1,2,3,5];
+		Tool.ArrayConcat(arrs,['3','4','d','g'],6,7,8,[5,6,6,6,6,4]);
+		console.log(arrs);
 		const self = this;
 		let mainPageOffset = {
 			height:window.innerHeight,
