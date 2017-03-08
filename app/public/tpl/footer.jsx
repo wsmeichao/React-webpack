@@ -2,6 +2,7 @@
  * Created by MC on 2016/11/11.
  */
 import React from 'react';
+const footer = require('../../../build/img/footer.png');
 class Footer extends React.Component{
   render(){
     return (
@@ -9,7 +10,7 @@ class Footer extends React.Component{
         <ul>
         	<li key='footer_first'>
         		<a href='http://bigmeichao.com/' target='_blank' className={'footJump'}>
-        			<img src='/img/footer.png' alt='http://bigmeichao.com/'/>
+        			<img src={footer} alt='http://bigmeichao.com/'/>
         		</a>
         	</li>
         	<li key='footer_second'>

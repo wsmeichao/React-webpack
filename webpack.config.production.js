@@ -7,7 +7,6 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: [
-        'webpack/hot/dev-server',
         'webpack-hot-middleware/client',
         path.resolve(__dirname, './app/routes')
     ],
@@ -22,8 +21,8 @@ module.exports = {
         // contentBase: '',  //静态资源的目录 相对路径,相对于当前路径 默认为当前config所在的目录
         // devtool: 'eval',
         // hot: true,        //自动刷新
-        inline: true,    
-        port: 8181        
+        // inline: true,    
+        // port: 8181        
     },
     module: {
         loaders: [

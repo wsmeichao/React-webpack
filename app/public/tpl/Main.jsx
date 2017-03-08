@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { MIcon } from '../../components/MComponent';
 import { Tool } from '../Tool/Tool';
+const secondAdmin = require('../../../build/img/second_admin.png');
+const secondDevelop = require('../../../build/img/second_develop.png');
 
 class Main extends React.Component{
 	constructor(props){
@@ -101,8 +103,9 @@ class Main extends React.Component{
         // window.onmousewheel = document.onmousewheel = this._EventMouseWheel; 
 	}
 	render(){
+		console.log(__dirname);
 		let arr = [1,1,'2','2',3,4,5,'meichao','meichao'];
-		// console.log("数组去重",[...new Set(arr)]);
+		console.log("数组去重",[...new Set(arr)]);
 		// for(let item of ['a','b']){console.log(item )}
 		let arrs = [1,2,3,5];
 		Tool.ArrayConcat(arrs,['3','4','d','g'],6,7,8,[5,6,6,6,6,4]);
@@ -150,7 +153,7 @@ class Main extends React.Component{
 								<div className="second-bd">
 									<div className="second-cell">
 										<div className="second-cell-hd">
-											<img src="./img/second_admin.png" alt="" />
+											<img src={secondAdmin} alt="" />
 										</div>
 										<div className="second-cell-bd">
 											<div className="second-cell-bd-title">梅超</div>
@@ -165,7 +168,7 @@ class Main extends React.Component{
 									</div>
 									<div className="second-cell">
 										<div className="second-cell-hd">
-											<img src="./img/second_develop.png" alt="" />
+											<img src={secondDevelop} alt="" />
 										</div>
 										<div className="second-cell-bd">
 											<div className="second-cell-bd-title">邓文秀</div>

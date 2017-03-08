@@ -38,6 +38,8 @@ app.use(webpackDevMiddleware(compiler, {
   publicPath: webpackDevConfig.output.publicPath,
   noInfo: true,
   hot:true,
+  port:8181,
+  inline: true,
   stats: {
       colors: true
   }
