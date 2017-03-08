@@ -14,7 +14,7 @@
 
 * $ npm install webpack -g
 * $ npm install
-* $ npm start(后台express,但是img图片路径还有问题,目前只写了一个接口例子:api/Page,去组件页面可看到有回传的数据)
+* $ npm start(后台express,目前只写了一个接口例子:api/Page,去组件页面可看到有回传的数据)
 * 打开localhost:8181即可
 
 ---
