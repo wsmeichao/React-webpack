@@ -56,19 +56,20 @@ class MInput extends React.Component {
     }
     render() {
       let inputsize = this.props.size?`M-input-${this.props.size}`:"";
+      let {type,placeholder,value,defaultValue,disabled,className,onKeyPress} = this.props;
       return (
       	<span className="M-input-wrapper">
       		<input 
-      			type={this.props.type} 
-      			placeholder={this.props.placeholder} 
-      			value={this.props.value}
-      			defaultValue={this.props.defaultValue}
-      			disabled={this.props.disabled}
-      			className={classNames('M-input',inputsize,this.props.className)} 
+      			type={type} 
+      			placeholder={placeholder} 
+      			value={value}
+      			defaultValue={defaultValue}
+      			disabled={disabled}
+      			className={classNames('M-input',inputsize,className)} 
       			onFocus={this._Focus} 
       			onBlur={this._Blur}
       			onChange={this._Change}
-            onKeyPress={this.props.onKeyPress}
+            onKeyPress={onKeyPress}
             ref={event=>this.InputFocus=event}
       		/>
       	</span>

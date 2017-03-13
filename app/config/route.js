@@ -29,6 +29,7 @@ export default {
 			childRoutes:[
 				{
 					path: 'component',
+					onEnter:(nextState, replace) => console.log("这里是子路由的过滤",nextState,replace),
 				  	getComponent(nextState, cb) {
 				    	require.ensure([], (require) => {
 				      		cb(null, require('../public/tpl/ComponentMain'))
@@ -40,7 +41,8 @@ export default {
 								cb(null,require('../public/tpl/componentInit'))
 							})
 						},
-					}
+					},
+					onLeave:(nextState, replace) => console.log("这里是子路由的离开",nextState,replace),
 			    },{
 					path:'*',
 					onEnter:(nextState, replace) => replace("404")

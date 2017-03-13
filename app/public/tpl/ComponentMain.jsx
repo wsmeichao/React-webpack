@@ -11,21 +11,22 @@ class ComponentMain extends React.Component{
 	}
 	componentDidMount(){
 		document.title="组件API文档";
+
 		/*
 		*	代理到	http://bigmeichao.com/api/Page.php
-		*
-		let detail = "/api/Page.php?init=has_init";
-		fetch(detail,{
-			method: 'GET'
-		})
-		.then(function(response) {
-			console.log("response",response);
-			return response.json();
-		}).then(function(data){
-			console.log('data',data);
-		})
-		*
 		*/
+		if(process.env.NODE_ENV && process.env.NODE_ENV == 'production'){
+			let detail = "/api/Page.php?init=has_init";
+			fetch(detail,{
+				method: 'GET'
+			})
+			.then(function(response) {
+				console.log("response",response);
+				return response.json();
+			}).then(function(data){
+				console.log('data',data);
+			})
+		}
 
 		/*
 		*	这里不是代理，是直接连接server.js的express的接口
